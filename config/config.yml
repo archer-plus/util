@@ -1,0 +1,56 @@
+redis:
+  - name: service
+    conn: 127.0.0.1:6379
+    password: 123456
+    db: 0
+  - name: cache
+    conn: 127.0.0.1:6379
+    password: 123456
+    db: 1
+mongo:
+  db: ice
+  conn: mongodb://admin@localhost:27017/?authSource=ice
+  timeout: 5
+  max_pool: 10
+log:
+  file_name: logs/app.logx
+  max_size: 32
+  max_age: 1
+  level: debug #debug,info,warn,error,panic,fatal
+nsq:
+  topic: model
+  channel: model
+  nsqd_addr: 127.0.0.1:4150
+  lookup_addr: 127.0.0.1:4161
+  max_in_flight: 2
+captcha:
+  redis:
+    conn: 127.0.0.1:6379
+    password: 123456
+    db: 0
+  color:
+    r: 178
+    g: 158
+    b: 115
+    a: 160
+  height: 60
+  width: 240
+  noise_count: 10
+  show_line: 3
+  length: 6
+  source: 1234567890qwertyuioplkjhgfdsazxcvbnm
+rabbitmq:
+  producer:
+    address: amqp://admin:123456@localhost:5672
+    vhost: model
+    heartbeat: 2
+    exchange: model-ex
+    queue: model-queue
+    routing_key: model-routing
+  consumer:
+    address: amqp://admin:123456@localhost:5672
+    vhost: message
+    heartbeat: 2
+    exchange: message-ex
+    queue: message-queue
+    routing_key: message-routing

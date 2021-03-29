@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package core.proto;
+
+option go_package=".;page";
+
+enum Order {
+  ASC = 0;
+  DESC = 1;
+}
+
+message PageInfo {
+  // @inject_tag: json:"page_size"
+  int32 page_size = 1; // 每页记录数
+  // @inject_tag: json:"page"
+  int32 page = 2; // 当前页数
+  // @inject_tag: json:"total"
+  int32 total = 3; // 总共数据量
+  // @inject_tag: json:"page_total"
+  int32 page_total = 4; // 总共页数
+}
+
+message PageRequest {
+  Order order = 1; // 排序
+  int32 page = 2; // 当前页数
+  int32 page_size = 3; // 每页记录数
+}
